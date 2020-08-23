@@ -1,139 +1,31 @@
-// import React from 'react'
-// import styled from "styled-components/native";
-// import PropTypes from "prop-types";
-// import Poster from "./Poster";
-// import {TouchableOpacity, StyleSheet} from "react-native";
-// import {useNavigation} from "@react-navigation/native";
-// import {apiImage} from "../../api";
-// import {trimText, formDate} from "../../Utils";
-
-
-// const Container = styled.View`
-//     width: 100%;
-//     height: 100%;
-// `;
-
-// const BG = styled.Image`
-//     width: 100%;
-//     height: 100%;
-//     opacity: 0.4;
-//     position: absolute;
-// `;
-
-// const Content = styled.View`
-//     height: 100%;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-around;
-// `;
-
-// const Data = styled.View`
-//     width: 50%;
-//     align-items: flex-start;
-// `;
-
-// const Title = styled.Text`
-//     color: white;
-//     font-weight: bold;
-//     font-size: 20px;
-//     margin-bottom: 10px;
-// `;
-
-// const Desc = styled.Text`
-//     color: rgb(220, 220, 220);
-//     font-size: 14px;
-//     font-weight: 500;
-// `;
-
-// const Button = styled.View`
-//     margin-top: 10px;
-//     background-color: #e74c3c;
-//     padding: 7px 10px;
-//     border-radius: 3px;
-// `;
-
-// const ButtonText = styled.Text`
-//     color: white;
-// `;
-
-// const TagItem = styled.Text`
-//     color: white;
-// `;
-
-// const UploadDate = styled.Text`
-//     color: white;
-//     font-size: 12px;
-//     margin-bottom: 5px;
-// `;
-
-
-// const Slide = ({id, title, desc, url, thumbnail, uploadDate, tag}) => {
-
-//     const navigation = useNavigation();
-//     const goToDetail = () => 
-//         navigation.navigate("Detail", {
-//             id,
-//             title,
-//             thumbnail, 
-//             desc,
-//             url,
-//             uploadDate,
-//             tag
-//         });
-    
-//     return (
-//         <Container> 
-//             <BG source={{ url: apiImage(thumbnail) }} />
-//             <Content>
-//                 <Poster url={apiImage(thumbnail)}/>
-//                 <Data>
-//                     <Title>{trimText(title, 10)}</Title>
-//                     {/* {tag.map((item, index) => {
-//                         <TagItem key={index}>
-//                             {item}
-//                         </TagItem>
-//                     })} */}
-//                     {uploadDate ? <UploadDate>등록일: {formDate(uploadDate)}</UploadDate> : null}
-//                     <Desc>{desc.slice(0, 120)}</Desc>
-//                     <TouchableOpacity onPress={goToDetail}>
-//                         <Button>
-//                             <ButtonText>View Details</ButtonText>
-//                         </Button>
-//                     </TouchableOpacity>
-//                 </Data>
-//             </Content>
-//         </Container>
-//     )
-
-    
-// };
-
-// Slide.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     desc: PropTypes.string.isRequired,
-//     tag: PropTypes.array,
-//     thumbnail: PropTypes.string.isRequired,
-//     uploadDate: PropTypes.string.isRequired
-// };
-
-// export default Slide;
-
-
 import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Image, TouchableOpacity, Dimensions, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import Poster from './Poster';
 import { apiImage } from '../../api';
+
+const {width: WIDTH, height: HEIGHT} = Dimensions.get("screen");
 
 const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
     return (
         <View style={styles.container}>
             <Image style={styles.bg} source={{url: apiImage(thumbnail)}} />
             <View style={styles.content}>
+                <Poster url={apiImage(thumbnail)} />
+                
+                 {/*  감싸서 고정을 시키고, 설명영역이 움직일 때, 버튼이 움직이지 않도록 영역을 둘로 나눠 구역화 */}
                 <View style={styles.data}>
                     <Text style={styles.title}>
-
+                        {title.slice(0, 30)}
                     </Text>
+                    <Text style={styles.desc}>
+                        {desc.slice(0, 120)}
+                    </Text>
+                    <TouchableOpacity>
+                        <View style={styles.button}>
+                            <Text style={styles.buttonText}>View Detail</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -163,6 +55,7 @@ const styles = StyleSheet.create({
     bg: {
         width: '100%',
         height: '100%',
+        backgroundColor: 'black',
         opacity: 0.4,
         position: "absolute"
     },
@@ -175,16 +68,38 @@ const styles = StyleSheet.create({
     },
     data: {
         width: '50%',
+        height: '80%',
         alignItems: 'flex-start'
     },
     title: {
-        color: "grey",
+        color: "black",
         fontWeight: "bold",
         fontSize: 20,
-        marginBottom: '10px'
+        marginBottom: 10
 
+    },
+    // Hex color는 rgb코드를 colorpicker에서 찾아와도 된다.
+    desc: {
+        color: "#dcdcdc",
+        fontSize: 14,
+        fontWeight: "500"
+    },
+    button : {
+        marginTop: 70,
+        marginLeft: 70,
+        width: 150,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: '#e74c3c',
+        borderRadius: 10
+    },
+    buttonText : {
+        color: 'white'
+    },
+    tagItem : {
+        color: 'white'
     }
-
 
 
 });

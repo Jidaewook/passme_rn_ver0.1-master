@@ -3,35 +3,59 @@ import React from 'react';
 import {
     ScrollView,
     View,
-    Text,
     Image,
+    Text,
     Dimensions,
-    StyleSheet
+    StyleSheet,
+    ActivityIndicator
 } from 'react-native';
+import styled from "styled-components/native";
 import Swiper from 'react-native-swiper';
+import Slide from '../../components/Slide';
 
-const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
+// const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
+
+const Container = styled.View`
+    flex: 1;
+    justify-content: center;
+`;
+
 
 const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.sliderContainer}>
-                <Swiper
-                    loop
-                    timeout={3}
-                    height={258}
-                    activeDotColor='#fff'
-                >
-                    {ncs.map(item => (
-                        <View style={styles.container}>
-                            <View >
-                                <Text>{item.title}</Text>
-                            </View>
-                        </View>
-                    ))}
-                </Swiper>
-            </View>
-        </ScrollView>
+        <Container>
+            {loading ? (
+                <ActivityIndicator color="black" size="large"  />
+            ) : (
+                <ScrollView style={styles.container}>
+                    <View style={styles.sliderContainer}>
+                        <Swiper
+                            loop
+                            timeout={3}
+                            height={258}
+                            activeDotColor='#fff'
+                        >
+                            {ncs.map(item => (
+                                <View style={styles.container}>
+                                    <Slide 
+                                        key={item._id}
+                                        id={item._id}
+                                        title={item.title}
+                                        desc={item.desc}
+                                        thumbnail={item.thumbnail}
+                                        uploadDate={item.updatedAt}
+
+                                    />
+                                </View>
+                            ))}
+                        </Swiper>
+                    </View>
+                </ScrollView>
+            )}
+        </Container>
+
+
+        
     );
 };
 

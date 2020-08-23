@@ -21,7 +21,7 @@ const MypageScreen = () => {
     };
 
 
-    const _pickImage = async () => {
+    const pickImage = async () => {
         try{
             let result = await ImagePicker.launchImageLibraryAsync({
                 mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -30,7 +30,7 @@ const MypageScreen = () => {
                 quality: 1,
             });
             if(!result.cancelled) {
-                this.setState({image: result.uri});
+                console.log(result.url);
             }
             console.log(result); 
         } catch (E) {
@@ -60,7 +60,7 @@ const MypageScreen = () => {
                     <View style={styles.active}></View>
                     
                     <TouchableOpacity 
-                        onPress={() => _pickImage}
+                        onPress={() => pickImage}
                     >
                         <View style={styles.add}>
                             <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
