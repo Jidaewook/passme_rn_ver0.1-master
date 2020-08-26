@@ -15,12 +15,14 @@ const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
                 
                  {/*  감싸서 고정을 시키고, 설명영역이 움직일 때, 버튼이 움직이지 않도록 영역을 둘로 나눠 구역화 */}
                 <View style={styles.data}>
-                    <Text style={styles.title}>
-                        {title.slice(0, 30)}
-                    </Text>
-                    <Text style={styles.desc}>
-                        {desc.slice(0, 120)}
-                    </Text>
+                    <View style={styles.data_box}>
+                        <Text style={styles.title}>
+                            {title.slice(0, 30)}
+                        </Text>
+                        <Text style={styles.desc}>
+                            {desc.slice(0, 120)}
+                        </Text>
+                    </View>
                     <TouchableOpacity>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>View Detail</Text>
@@ -70,6 +72,10 @@ const styles = StyleSheet.create({
         width: '50%',
         height: '80%',
         alignItems: 'flex-start'
+    },
+    data_box: {
+        width: '100%',
+        height: '37%'
     },
     title: {
         color: "black",

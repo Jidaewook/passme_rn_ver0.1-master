@@ -12,8 +12,9 @@ import {
 import styled from "styled-components/native";
 import Swiper from 'react-native-swiper';
 import Slide from '../../components/Slide';
+import Title from '../../components/Title';
 
-// const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
+const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 const Container = styled.View`
     flex: 1;
@@ -23,7 +24,15 @@ const Container = styled.View`
 
 const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
     return (
-        <Container>
+        <ScrollView
+            style={{
+                // backgroundColor: "black"
+            }}
+            justifyContent={{
+                flex: 1,
+                justifyContent: loading ? "center" : "flex-start"
+            }}
+        >
             {loading ? (
                 <ActivityIndicator color="black" size="large"  />
             ) : (
@@ -50,9 +59,24 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                             ))}
                         </Swiper>
                     </View>
+                    
                 </ScrollView>
             )}
-        </Container>
+            <Container>
+                <Title title={"NCS 고득점 노하우"}/>
+            </Container>
+            <ScrollView
+                style={{marginTop: 20}}
+                contentContainerStyle={{paddingLeft: 30}}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            >
+                {ncs.map(item => {
+                    // <Vertical />
+                })}
+
+            </ScrollView>
+        </ScrollView>
 
 
         
