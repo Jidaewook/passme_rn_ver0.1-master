@@ -6,22 +6,34 @@ import {apiImage} from '../../api';
 import {useNavigation} from '@react-navigation/native';
 import Likes from './Likes';
 import Comments from './Comments';
+import {trimText, formDate} from '../../Utils';
 
-const Vertical = () => {
+const Vertical = ({id, thumbnail, title, likes, comments}) => {
+    const navigation = useNavigation();
+    const goToDetail = () => 
+        navigation.navigate("Detail", {
+            id, 
+            thumbnail,
+            title,
+            likes,
+            comments
+        });
+    
+
     return (
-        <TouchableOpacity onPress={} >
-            <View>
-                <Poster url={apiImage()} />
-                <Text></Text>
-                <VIew>
-                    <Likes />
-                    <Comments />
+        <TouchableOpacity onPress={goToDetail} >
+            <View style={styles.Container}>
+                <Poster url={apiImage(thumbnail)} />
+                <Text style={styles.TItle}>{trimText(title, 10)}</Text>
+                <VIew style={styles.Data}>
+                    <Likes likes={likes.length} />
+                    <Comments commetns={comments.length} />
                 </VIew>
 
             </View>
 
         </TouchableOpacity>
-    )
+    );
 };
 
 Vertical.propTypes = {
@@ -44,5 +56,15 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         
 
+    }, 
+    LikesContainer: {
+        color: 'white',
+        
+    }, 
+    Data: {
+        marginTop: '5',
+        width: '60%',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 });

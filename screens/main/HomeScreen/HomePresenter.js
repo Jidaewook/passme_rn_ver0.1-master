@@ -13,6 +13,7 @@ import styled from "styled-components/native";
 import Swiper from 'react-native-swiper';
 import Slide from '../../components/Slide';
 import Title from '../../components/Title';
+import Vertical from '../../components/Vertical';
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -72,10 +73,18 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 showsHorizontalScrollIndicator={false}
             >
                 {ncs.map(item => {
-                    // <Vertical />
+                    <Vertical 
+                        key={item._id}
+                        thumbnail={item.thumbnail}
+                        title={item.title}
+                        likes={item.likes}
+                        comments={item.comments}
+                    
+                    />
                 })}
 
             </ScrollView>
+            
         </ScrollView>
 
 
