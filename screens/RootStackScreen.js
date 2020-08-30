@@ -11,11 +11,12 @@ const RootStack = createStackNavigator();
 
 const RootStackScreen = ({navigation}) => (
     <RootStack.Navigator headerMode='none'>
+        <RootStack.Screen name="SignupScreen" component={SignupScreen} />
+
         <RootStack.Screen name="SplashScreen" component={SplashScreen} />
 
-                <RootStack.Screen name="SigninScreen" component={SigninScreen} />
+        <RootStack.Screen name="SigninScreen" component={SigninScreen} />
 
-        <RootStack.Screen name="SignupScreen" component={SignupScreen} />
         <RootStack.Screen name="ForgotpasswordScreen" component={ForgotpasswordScreen} />
 
     </RootStack.Navigator>

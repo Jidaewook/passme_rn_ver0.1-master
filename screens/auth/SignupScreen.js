@@ -9,40 +9,69 @@ import { LinearGradient } from 'expo-linear-gradient';
 const SignupScreen = ({navigation}) => {
 
     const [data, setData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirm_password: '',
         check_textInputChange : false,
         secureTextEntry: true,
         confirm_secureTextEntry: true
     })
 
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmpw, setConfirmpw] = useState('')
 
+
+
+    // 이 함수 세트는 텍스트 인풋에 값이 들어가도록 하는 함수
 
     const textInputChange = (val) => {
+        // if(val.length !== 0){
+        //     setData({
+        //         ...data,
+        //         username: val,
+        //         check_textInputChange: true
 
+        //     });
+        // } else {
+        //     setData({
+        //         ...data,
+        //         username: val,
+        //         check_textInputChange: false
+        //     })
+        // }
     }
 
     const handlePasswordChange = (val) => {
-
+        setPassword({
+            password: val
+        })
     }
 
     const handleConfirmPasswordChange = (val) => {
-
+        setConfirmpw({
+            confirmpw: val
+        })
     }
 
     const updateSecureTextEntry = () => {
-
+        // setPassword({
+        //     secureTextEntry: !data.secureTextEntry
+        // })
     }
 
     const updateConfirmSecureTextEntry = () => {
-
+        setConfirmpw
     }
 
+    const signUpSubmit = async () => {
+        console.log(
+            username, email, password, confirmpw
+            )
+        
+    }
 
+    // const check_TextInputChange = () => {
 
-    // const check_TextInputChange () => 
+    // }
 
     return (
         <View style={styles.container}>
@@ -68,7 +97,12 @@ const SignupScreen = ({navigation}) => {
                         placeholder="Your username"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => textInputChange(val)}
+                        value={username}
+                        
+                        onChangeText={text => (
+                            setUsername(text)
+                        )}
+                        
                     />
                     {data.check_textInputChange ? 
                         <Animatable.View
@@ -99,9 +133,14 @@ const SignupScreen = ({navigation}) => {
                         placeholder="Your E-mail"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => textInputChange(val)}
+                        value={email}
+                        onChangeText={text => (
+                            setEmail(text)
+                        )}
+                        // onChangeText={(val) => textInputChange(val)}
+
                     />
-                    {data.check_textInputChange ? 
+                    {/* {data.check_textInputChange ? 
                         <Animatable.View
                             animation="bounceIn"
                         >
@@ -111,7 +150,7 @@ const SignupScreen = ({navigation}) => {
                                 size={20}
                             />
                         </Animatable.View>
-                    : null }
+                    : null } */}
                 </View>
                 
 
@@ -134,7 +173,11 @@ const SignupScreen = ({navigation}) => {
                         secureTextEntry={data.secureTextEntry ? true : false}
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => handlePasswordChange(val)}
+                        value={password}
+                        onChangeText={text => (
+                            setPassword(text)
+                        )}
+                        // onChangeText={(val) => handlePasswordChange(val)}
                     />
                     <TouchableOpacity
                         onPress={updateSecureTextEntry}
@@ -173,15 +216,19 @@ const SignupScreen = ({navigation}) => {
                     />
                     <TextInput 
                         placeholder="Your Confirm Password"
-                        secureTextEntry={data.confirm_secureTextEntry ? true : false}
+                        // secureTextEntry={data.confirm_secureTextEntry ? true : false}
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => handleConfirmPasswordChange(val)}
+                        value={confirmpw}
+                        onChangeText={text => (
+                            setConfirmpw(text)
+                        )}
+                        // onChangeText={(val) => handleConfirmPasswordChange(val)}
                     />
                     <TouchableOpacity
                         onPress={updateConfirmSecureTextEntry}
                     >
-                        {data.secureTextEntry ? 
+                        {/* {data.secureTextEntry ? 
                             <Feather 
                                 name="eye-off"
                                 color="grey"
@@ -194,7 +241,7 @@ const SignupScreen = ({navigation}) => {
                                 size={20}
                             />
 
-                        } 
+                        }  */}
 
                     </TouchableOpacity>
                 </View>
@@ -209,7 +256,10 @@ const SignupScreen = ({navigation}) => {
                     <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
                 </View>
 
-                <View style={styles.button}>
+                <TouchableOpacity 
+                    onPress={signUpSubmit}
+                    style={styles.button}
+                >
                     <LinearGradient
                         colors={['#08d4c4', '#01ab9d']}
                         style={styles.signIn}
@@ -237,7 +287,7 @@ const SignupScreen = ({navigation}) => {
                         >Signin</Text>
                         
                     </TouchableOpacity>
-                </View>
+                </TouchableOpacity>
 
             </Animatable.View>
         </View>
