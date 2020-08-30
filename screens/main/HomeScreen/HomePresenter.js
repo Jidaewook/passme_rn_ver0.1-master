@@ -15,6 +15,7 @@ import Slide from '../../components/Slide';
 import Title from '../../components/Title';
 import Vertical from '../../components/Vertical';
 
+
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 const Container = styled.View`
@@ -65,25 +66,30 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
             )}
             <Container>
                 <Title title={"NCS 고득점 노하우"}/>
-            </Container>
-            <ScrollView
-                style={{marginTop: 20}}
-                contentContainerStyle={{paddingLeft: 30}}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-            >
-                {ncs.map(item => {
-                    <Vertical 
-                        key={item._id}
-                        thumbnail={item.thumbnail}
-                        title={item.title}
-                        likes={item.likes}
-                        comments={item.comments}
+                <ScrollView
+                    style={{marginTop: 20, width: '100%', height: '80%'}}
+                    contentContainerStyle={{paddingLeft: 30}}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
                     
-                    />
-                })}
+                    {ncs.map(item => (
+                        <Vertical 
+                            key={item._id}
+                            thumbnail={item.thumbnail}
+                            title={item.title}
+                            likes={item.likes}
+                            comments={item.comments}
+                        
+                        />
+                        
+                    ))}
+                    
 
-            </ScrollView>
+
+                </ScrollView>
+            </Container>
+            
             
         </ScrollView>
 

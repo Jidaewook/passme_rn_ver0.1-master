@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import Poster from './Poster';
 import {apiImage} from '../../api';
@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import Likes from './Likes';
 import Comments from './Comments';
 import {trimText, formDate} from '../../Utils';
+
 
 const Vertical = ({id, thumbnail, title, likes, comments}) => {
     const navigation = useNavigation();
@@ -25,10 +26,10 @@ const Vertical = ({id, thumbnail, title, likes, comments}) => {
             <View style={styles.Container}>
                 <Poster url={apiImage(thumbnail)} />
                 <Text style={styles.TItle}>{trimText(title, 10)}</Text>
-                <VIew style={styles.Data}>
+                <View style={styles.Data}>
                     <Likes likes={likes.length} />
                     <Comments commetns={comments.length} />
-                </VIew>
+                </View>
 
             </View>
 
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         marginRight: 20
     },
     TItle : {
-        color: 'white',
+        color: 'black',
         fontWeight: '500',
         
 
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
         
     }, 
     Data: {
-        marginTop: '5',
+        marginTop: 5,
         width: '60%',
         alignItems: 'center',
         flexDirection: 'row'

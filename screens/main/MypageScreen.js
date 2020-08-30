@@ -4,6 +4,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import About from '../components/About';
 
 
 const MypageScreen = () => {
@@ -87,6 +88,7 @@ const MypageScreen = () => {
                         <Text style={[styles.text, styles.subText]}>Following</Text>
                     </View>
                 </View>
+                <About />
 
                 <View style={{ marginTop: 32 }}>
                     <ScrollView
