@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Dimensions, TouchableOpacity, StyleSheet, StatusBar, TextInput} from 'react-native';
+import {View, Text, Dimensions, TouchableOpacity, StyleSheet, StatusBar, TextInput, Alert} from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
 
@@ -7,15 +7,20 @@ import {FontAwesome, Feather} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
 
 import {SocialIcon} from 'react-native-elements';
+import MainTabScreen from '../../screens/MainTabScreen';
+import axios from 'axios';
 
 const SigninScreen = ({navigation}) => {
     const [data, setData] = useState({
-        email: '',
-        password: '',
         check_textInputChange: false,
         secureTextEntry: true,
         
     })
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
+
 
     const textInputChange = (val) => {
 
@@ -27,6 +32,39 @@ const SigninScreen = ({navigation}) => {
 
     const updateSecureTextEntry = (val) => {
 
+    }
+
+    const signInSubmit = async () => {
+        const loginData = {
+            email: email,
+            password: password
+        }
+        setLoading(true);
+        try {
+            axios.post("http://localhost:5000/users/login", loginData)
+                .then(data => {
+                    if(data.status === 200){
+                        Alert.alert("로그인 되었습니다.",
+                        [
+                            {
+                                text: "확인",
+                                onPress: () => navigation.navigate('MainTabScreen'),
+                                style: "cancel"
+                            },
+                            {
+                                text: "취소"
+                            }
+                        ])
+                    } else if (data.status === 404){
+                        alert("일치하는 아이디 또는 비밀번호가 없습니다.")
+                    }
+                })
+                .catch(err => console.log(err))
+        } catch(e){
+            alert("You have wrong Account")
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -104,7 +142,10 @@ const SigninScreen = ({navigation}) => {
 
                 </View>
 
-                <View style={styles.button}>
+                <TouchableOpacity
+                    onPress={signInSubmit}
+                    style={styles.button}
+                >
                     <LinearGradient
                         colors={['#08d4c4', '#01ab9d']}
                         style={styles.signIn}
@@ -117,7 +158,9 @@ const SigninScreen = ({navigation}) => {
 
                     </LinearGradient>
 
-                    <TouchableOpacity
+                    
+                </TouchableOpacity>
+                <TouchableOpacity
                         onPress={() => navigation.navigate('SignupScreen')}
                         style={[styles.signIn, {
                             borderColor: '#08d4c4', 
@@ -140,7 +183,6 @@ const SigninScreen = ({navigation}) => {
                         <Text style={{fontWeight: 'bold', color: 'grey'}}>Forgot Password</Text>
                         
                     </TouchableOpacity>
-                </View>
 
 
                 <View style={styles.socialIcons}>
