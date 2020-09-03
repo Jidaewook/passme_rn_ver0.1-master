@@ -7,8 +7,8 @@ import {FontAwesome, Feather} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
 
 import {SocialIcon} from 'react-native-elements';
-import MainTabScreen from '../../screens/MainTabScreen';
 import axios from 'axios';
+import { text } from 'express';
 
 const SigninScreen = ({navigation}) => {
     const [data, setData] = useState({
@@ -39,6 +39,8 @@ const SigninScreen = ({navigation}) => {
             email: email,
             password: password
         }
+        console.log(loginData);
+
         setLoading(true);
         try {
             axios.post("http://localhost:5000/users/login", loginData)
@@ -91,9 +93,12 @@ const SigninScreen = ({navigation}) => {
                         placeholder="Your E-mail"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => textInputChange(val)}
+                        value={email}
+                        onChangeText={text = (
+                            setEmail(text)
+                        )}
                     />
-                    {data.check_textInputChange ?
+                    {/* {data.check_textInputChange ?
                         <Animatable.View 
                             animation="bounceIn"
                         >
@@ -104,7 +109,7 @@ const SigninScreen = ({navigation}) => {
                             />
 
                         </Animatable.View>
-                    : null }
+                    : null } */}
                 </View>
 
 
@@ -120,7 +125,10 @@ const SigninScreen = ({navigation}) => {
                     <TextInput 
                         placeholder="Your Password"
                         style={styles.textInput}
-                        onChangeText={(val) => handlePasswordChange(val)}
+                        value={password}
+                        onChangeText={text => (
+                            setPassword(text)
+                        )}
                     />
 
                     <TouchableOpacity
