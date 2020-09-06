@@ -25,7 +25,7 @@ const Vertical = ({id, thumbnail, title, likes, comments}) => {
         <TouchableOpacity onPress={goToDetail} >
             <View style={styles.Container}>
                 <Poster url={apiImage(thumbnail)} />
-                <Text style={styles.TItle}>{trimText(title, 10)}</Text>
+                <Text style={styles.Title}>{trimText(title, 12)}</Text>
                 <View style={styles.Data}>
                     <Likes likes={likes.length} />
                     <Comments commetns={comments.length} />
@@ -52,10 +52,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 20
     },
-    TItle : {
+    Title : {
         color: 'black',
         fontWeight: '500',
-        
+        fontSize: 16,
+        marginTop: 5
 
     }, 
     LikesContainer: {

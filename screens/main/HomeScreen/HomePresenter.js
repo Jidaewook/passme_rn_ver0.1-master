@@ -21,6 +21,8 @@ const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 const Container = styled.View`
     flex: 1;
     justify-content: center;
+    padding-left: 10px;
+    
 `;
 
 
@@ -65,10 +67,10 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 </ScrollView>
             )}
             <Container>
-                <Title title={"NCS 고득점 노하우"}/>
+                <Title title={"NCS 고득점 노하우"}   />
                 <ScrollView
                     style={{marginTop: 20, width: '100%', height: '80%'}}
-                    contentContainerStyle={{paddingLeft: 30}}
+                    // contentContainerStyle={{paddingLeft: 0}}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 >
@@ -89,7 +91,31 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
 
                 </ScrollView>
             </Container>
-            
+            <Container style={{marginTop: 20}}>
+                <Title title={"NCS 수리능력 비밀방출"}   />
+                <ScrollView
+                    style={{marginTop: 20, width: '100%', height: '80%'}}
+                    // contentContainerStyle={{paddingLeft: 0}}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
+                    
+                    {ncs.map(item => (
+                        <Vertical 
+                            key={item._id}
+                            thumbnail={item.thumbnail}
+                            title={item.title}
+                            likes={item.likes}
+                            comments={item.comments}
+                        
+                        />
+                        
+                    ))}
+                    
+
+
+                </ScrollView>
+            </Container>
             
         </ScrollView>
 

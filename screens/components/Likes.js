@@ -5,13 +5,13 @@ const Container = styled.Text`
     color: black;
     margin-bottom: 7px;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 16px;
 
 `;
 
 const Likes = ({likes}) => 
     <Container>
-        🔥 {likes}
+        👨‍🦰 {likes}
     </Container>;
 
 export default Likes;

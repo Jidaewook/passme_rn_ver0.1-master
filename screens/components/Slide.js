@@ -1,17 +1,23 @@
 import React from 'react';
 import {StyleSheet, View, Image, TouchableOpacity, Dimensions, Text} from 'react-native';
+import {useNavigation} from "@react-navigation/native";
 import PropTypes from 'prop-types';
-import Poster from './Poster';
+import SlidePoster from './SlidePoster';
 import { apiImage } from '../../api';
 
 const {width: WIDTH, height: HEIGHT} = Dimensions.get("screen");
 
 const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
+
+    const navigation = useNavigation();
+    const goToDetail = () => 
+        navigation.navigate("DetailScreen", {name: title});
+
     return (
         <View style={styles.container}>
             <Image style={styles.bg} source={{url: apiImage(thumbnail)}} />
             <View style={styles.content}>
-                <Poster url={apiImage(thumbnail)} />
+                <SlidePoster url={apiImage(thumbnail)} />
                 
                  {/*  감싸서 고정을 시키고, 설명영역이 움직일 때, 버튼이 움직이지 않도록 영역을 둘로 나눠 구역화 */}
                 <View style={styles.data}>
@@ -23,7 +29,8 @@ const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
                             {desc.slice(0, 120)}
                         </Text>
                     </View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={goToDetail}>
+                    
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>View Detail</Text>
                         </View>

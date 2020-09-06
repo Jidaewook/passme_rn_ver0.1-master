@@ -12,9 +12,8 @@ export default Poster;
 
 const styles = StyleSheet.create({
     Poster: {
-        width: 180,
+        width: 140,
         height: 160,
-        borderRadius: 4,
-        marginLeft: 8      
+        borderRadius: 4        
     }
 })

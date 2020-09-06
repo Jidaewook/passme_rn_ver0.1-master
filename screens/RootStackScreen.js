@@ -6,6 +6,8 @@ import SplashScreen from './auth/SplashScreen';
 import SignupScreen from './auth/SignupScreen';
 import SigninScreen from './auth/SigninScreen';
 import ForgotpasswordScreen from './auth/ForgotpasswordScreen';
+import DetailScreen from './main/DetailScreen';
+import Home from "./main/HomeScreen";
 
 const RootStack = createStackNavigator();
 
@@ -18,8 +20,12 @@ const RootStackScreen = ({navigation}) => (
         <RootStack.Screen name="SigninScreen" component={SigninScreen} />
 
         <RootStack.Screen name="ForgotpasswordScreen" component={ForgotpasswordScreen} />
-
+        {/* Main */}
+        <RootStack.Screen name="HomeScreen" component={Home}   />
+        <RootStack.Screen name="DetailScreen" component={DetailScreen} />
     </RootStack.Navigator>
+
+    
 
 );
 
