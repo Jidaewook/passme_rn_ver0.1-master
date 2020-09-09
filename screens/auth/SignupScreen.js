@@ -70,30 +70,20 @@ const SignupScreen = ({navigation}) => {
             password: password
 
         }
-        // console.log(newData)
+        console.log(newData)
         setLoading(true);
+        // alert('Email');
         try {
             axios.post("http://localhost:5000/users/register", newData)
             .then(data => {
-                if(data.status === 200){
-                    Alert.alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.",
-                        [
-                            {
-                                text: "확인",
-                                onPress: () => navigation.navigate('SigninScreen'),
-                                style: "cancel"
-                            },
-                            {
-                                text: "취소"
-                            }
-                        ]
-                    )
-
-                } else if (data.status === 404) {
-                    alert("Email is exist")
-                }
+                alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.")
+                // console.log("msg", data.status);
+ 
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                alert(err.response.data.error)
+                // console.log("err", err.response.data.error);
+            })
         } catch(e) {
             alert("The Email is taken")
             
@@ -241,7 +231,6 @@ const SignupScreen = ({navigation}) => {
 
 
                             <Text style={[styles.text_footer, {
-                                marginTop: 35
                             }]}>Conrifm Password</Text>
 
                             <View style={styles.action}>

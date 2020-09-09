@@ -14,6 +14,12 @@ import Swiper from 'react-native-swiper';
 import Slide from '../../components/Slide';
 import Title from '../../components/Title';
 import Vertical from '../../components/Vertical';
+import Icon from '@expo/vector-icons/Ionicons';
+
+import RecommendScreen from '../RecommendScreen';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useNavigation} from "@react-navigation/native";
+
 
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
@@ -27,6 +33,12 @@ const Container = styled.View`
 
 
 const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
+
+    const navigation = useNavigation();
+    const goToDetail = () => 
+        navigation.navigate("RecommendScreen", {name: title});
+
+
     return (
         <ScrollView
             style={{
@@ -67,7 +79,19 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 </ScrollView>
             )}
             <Container>
-                <Title title={"NCS 고득점 노하우"}   />
+                <View
+                    style={styles.cardContainer}
+                >
+                    <Title title={"기관별 공고"}   />
+                    <TouchableOpacity onPress={goToDetail}>
+                    <Icon 
+                        name="ios-add" 
+                        color="black" 
+                        size={26}
+                        style={{marginLeft: 280}}
+                    />
+                    </TouchableOpacity>
+                </View>
                 <ScrollView
                     style={{marginTop: 20, width: '100%', height: '80%'}}
                     // contentContainerStyle={{paddingLeft: 0}}
@@ -92,7 +116,91 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 </ScrollView>
             </Container>
             <Container style={{marginTop: 20}}>
-                <Title title={"NCS 수리능력 비밀방출"}   />
+            <View
+                style={styles.cardContainer}
+            >
+                <Title title={"NCS 고득점 썰"}   />
+                    <Icon 
+                        name="ios-add" 
+                        color="black" 
+                        size={26} 
+                        style={{marginLeft: 250}}
+
+                    />
+            </View>
+                <ScrollView
+                    style={{marginTop: 20, width: '100%', height: '80%'}}
+                    // contentContainerStyle={{paddingLeft: 0}}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
+                    
+                    {ncs.map(item => (
+                        <Vertical 
+                            key={item._id}
+                            thumbnail={item.thumbnail}
+                            title={item.title}
+                            likes={item.likes}
+                            comments={item.comments}
+                        
+                        />
+                        
+                    ))}
+                    
+
+
+                </ScrollView>
+            </Container>
+            <Container style={{marginTop: 20}}>
+            <View
+                style={styles.cardContainer}
+            >
+                <Title title={"수리능력 Q&A"}   />
+                    <Icon 
+                        name="ios-add" 
+                        color="black" 
+                        size={26} 
+                        style={{marginLeft: 253}}
+
+                    />
+            </View>
+                <ScrollView
+                    style={{marginTop: 20, width: '100%', height: '80%'}}
+                    // contentContainerStyle={{paddingLeft: 0}}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                >
+                    
+                    {ncs.map(item => (
+                        <Vertical 
+                            key={item._id}
+                            thumbnail={item.thumbnail}
+                            title={item.title}
+                            likes={item.likes}
+                            comments={item.comments}
+                        
+                        />
+                        
+                    ))}
+                    
+
+
+                </ScrollView>
+            </Container>
+
+            <Container style={{marginTop: 20}}>
+            <View
+                style={styles.cardContainer}
+            >
+                <Title title={"문제적 문제해결"}   />
+                    <Icon 
+                        name="ios-add" 
+                        color="black" 
+                        size={26} 
+                        style={{marginLeft: 245}}
+
+                    />
+            </View>
                 <ScrollView
                     style={{marginTop: 20, width: '100%', height: '80%'}}
                     // contentContainerStyle={{paddingLeft: 0}}
@@ -117,6 +225,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 </ScrollView>
             </Container>
             
+            
         </ScrollView>
 
 
@@ -128,8 +237,8 @@ export default HomePresenter;
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    cardContainer: {
+        flexDirection: "row"
     },
     sliderContainer: {
         width: '100%',

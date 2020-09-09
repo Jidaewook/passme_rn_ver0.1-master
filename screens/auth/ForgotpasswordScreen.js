@@ -1,19 +1,43 @@
 import React, {useState} from 'react';
-import {Text, View, Dimensions, StyleSheet, TextInput, TouchableOpacity, StatusBar} from 'react-native';
+import {Text, View, Dimensions, StyleSheet, TextInput, TouchableOpacity, StatusBar, Alert} from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
 
 import {FontAwesome, Feather} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
+import axios from 'axios';
 
 const ForgotpasswordScreen = ({navigation}) => {
     const [data, setData] = useState({
-        email: '',
         check_textInputChange: false
     })
+    
+    const [email, setEmail] = useState('')
 
-    const textInputChange = (val) => {
+    const forgotSubmit = async () => {
+        const forgotData = {
+            email: email
+        }
+        console.log(forgotData);
+        setLoading(true);
 
+        try {
+            axios
+                .post("http://localhost:5000/users/forgot", forgotData)
+                .then(data => {
+                    alert("입력한 이메일( " + email + " )로 패스워드 재설정 링크가 전송되었습니다.")
+                })
+                .catch(err => {
+                    alert(err.response.data.error)
+                })
+                console.log("email", email);
+        } catch(e) {
+            alert("The Email is taken")
+            console.log("catch", e);
+        } finally {
+            console.log("setLoading", setLoading);
+            setLoading(false)
+        }
     }
 
     return (
@@ -43,7 +67,11 @@ const ForgotpasswordScreen = ({navigation}) => {
                         placeholder="Your E-mail"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => textInputChange}
+                        value={email}
+
+                        onChangeText={text => (
+                            setEmail(text)
+                        )}
                     />
                     {data.check_textInputChange ? 
                         <Animatable.View
@@ -58,7 +86,10 @@ const ForgotpasswordScreen = ({navigation}) => {
                     : null} 
                 </View>
 
-                <View style={styles.button}>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={forgotSubmit}
+                >
                     <LinearGradient
                         colors={['#08d4c4', '#01ab9d']}
                         style={styles.signIn}
@@ -71,7 +102,7 @@ const ForgotpasswordScreen = ({navigation}) => {
 
                     </LinearGradient>
 
-                </View>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                         onPress={() => navigation.navigate('SigninScreen')}
