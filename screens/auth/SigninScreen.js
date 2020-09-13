@@ -44,7 +44,7 @@ const SigninScreen = ({navigation}) => {
             axios.post("http://localhost:5000/users/login", loginData)
                 .then(data => {
                     if(data.status === 200){
-                        Alert.alert("로그인 되었습니다.",
+                        alert("로그인 되었습니다.",
                         [
                             {
                                 text: "확인",
@@ -91,7 +91,10 @@ const SigninScreen = ({navigation}) => {
                         placeholder="Your E-mail"
                         style={styles.textInput}
                         autoCapitalize="none"
-                        onChangeText={(val) => textInputChange(val)}
+                        value={email}
+                        onChangeText={text => (
+                            setEmail(text)
+                        )}
                     />
                     {data.check_textInputChange ?
                         <Animatable.View 
@@ -120,7 +123,10 @@ const SigninScreen = ({navigation}) => {
                     <TextInput 
                         placeholder="Your Password"
                         style={styles.textInput}
-                        onChangeText={(val) => handlePasswordChange(val)}
+                        value={password}
+                        onChangeText={text => (
+                            setPassword(text)
+                        )}                  
                     />
 
                     <TouchableOpacity

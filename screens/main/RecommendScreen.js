@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, Dimensions, Animated, TouchableOpacity, Platform} from 'react-native';
+
 
 const RecommendScreen = () => {
     return (

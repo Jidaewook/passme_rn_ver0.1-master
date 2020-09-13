@@ -13,26 +13,27 @@ const ForgotpasswordScreen = ({navigation}) => {
     })
     
     const [email, setEmail] = useState('')
+    const [loading, setLoading] = useState('')
 
     const forgotSubmit = async () => {
         const forgotData = {
             email: email
         }
-        console.log(forgotData);
+        console.log("forgotData: ", forgotData);
         setLoading(true);
 
         try {
             axios
                 .post("http://localhost:5000/users/forgot", forgotData)
                 .then(data => {
+                    console.log("data", data)
                     alert("입력한 이메일( " + email + " )로 패스워드 재설정 링크가 전송되었습니다.")
                 })
                 .catch(err => {
                     alert(err.response.data.error)
                 })
-                console.log("email", email);
         } catch(e) {
-            alert("The Email is taken")
+            alert("등록되지 않은 메일입니다.")
             console.log("catch", e);
         } finally {
             console.log("setLoading", setLoading);

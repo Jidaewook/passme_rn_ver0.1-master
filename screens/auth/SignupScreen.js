@@ -74,7 +74,8 @@ const SignupScreen = ({navigation}) => {
         setLoading(true);
         // alert('Email');
         try {
-            axios.post("http://localhost:5000/users/register", newData)
+            axios
+            .post("http://localhost:5000/users/register", newData)
             .then(data => {
                 alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.")
                 // console.log("msg", data.status);

@@ -8,7 +8,7 @@ import HomeScreen from './main/HomeScreen';
 import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
-import RecommendScreen from './main/RecommendScreen';
+import SettingScreen from './main/SettingScreen';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -47,7 +47,7 @@ const MainTabScreen = () => (
 
         <Tab.Screen
             name="Recommend"
-            component={RecommendScreen}
+            component={SettingScreen}
             options={{
                 tabBarLabel: 'Recommend',
                 tabBarColor: '#009387',
