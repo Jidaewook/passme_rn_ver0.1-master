@@ -12,10 +12,14 @@ import {
 
 } from 'react-native';
 
+import {useNavigation} from "@react-navigation/native";
+
 import Backdrop from '../../components/Recommend/Backdrop';
 import Loading from '../../components/Recommend/Loading';
 import Genres from '../../components/Recommend/Genres';
 import Rating from '../../components/Recommend/Rating';
+import ViewDetail from "../../components/Button/ViewDetail";
+
 
 import {getMovies} from '../../../api/MovieApi';
 
@@ -25,7 +29,12 @@ const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const SPACING = 10;
 
 
-const RecommendPresenter = () => {
+const RecommendPresenter = ({id, title, desc, tag, thumbnail, uploadDate}) => {
+    const navigation = useNavigation();
+    const goToDetail = () => 
+        navigation.navigate("DetailScreen", {name: title});
+
+
     const [movies, setMovies] = useState([]);
     const scrollX = useRef(new Animated.Value(0)).current;
     
@@ -106,6 +115,7 @@ const RecommendPresenter = () => {
                 <Text style={{fontSize: 12}} numberOfLines={3}>
                   {item.description}
                 </Text>
+                <ViewDetail onPress={goToDetail} />
               </Animated.View>
             </View>
           )
