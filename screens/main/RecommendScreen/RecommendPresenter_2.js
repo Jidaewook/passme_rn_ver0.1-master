@@ -21,7 +21,7 @@ import Rating from '../../components/Recommend/Rating';
 import ViewDetail from "../../components/Button/ViewDetail";
 
 
-import {getMovies} from '../../../api/MovieApi';
+import {lectureApi} from '../../../api';
 
 const {width, height} = Dimensions.get('window');
 const ITEM_SIZE = Platform.OS = 'ios' ? width * 0.72 : width * 0.74;
@@ -36,30 +36,31 @@ const RecommendPresenter = ({id, title, desc, tag, thumbnail, uploadDate}) => {
     const goToDetail = () => 
         navigation.navigate("DetailScreen", {name: title});
 
-    const [movies, setMovies] = useState([]);
+    const [ncs, setNCS] = useState([]);
+    const [psat, setPSAT] = useState([]);
     const scrollX = useRef(new Animated.Value(0)).current;
     
     useEffect(() => {
         const fetchData = async () => {
-            const movies = await getMovies();
-            setMovies([{key: 'empty-left'}, ...movies, {key: 'empty-right'}])
+            const ncs = await (lectureApi);
+            setNCS([{key: 'empty-left'}, ...ncs, {key: 'empty-right'}])
         };
 
-        if(movies.length === 0){
-            fetchData(movies);
+        if(ncs.length === 0){
+            fetchData(ncs);
         }
-    }, [movies])
+    }, [ncs])
 
-        if(movies.length === 0){
+        if(ncs.length === 0){
             return <Loading />
         }
 
     return (
         <View style={styles.container}>
-            <Backdrop movies={movies} scrollX={scrollX}  />
+            <Backdrop ncs={ncs} scrollX={scrollX}  />
       <Animated.FlatList 
         showsHorizontalScrollIndicator={false}
-        data={movies}
+        data={ncs}
         keyExtractor={(item) => item.key}
         horizontal
         bounces={false}
@@ -75,7 +76,7 @@ const RecommendPresenter = ({id, title, desc, tag, thumbnail, uploadDate}) => {
         scrollEventThrottle={16}
 
         renderItem={({item, index}) => {
-          if(!item.poster){
+          if(!item.thumbnail){
             return <View style={{width: EMPTY_ITEM_SIZE}} />;
           }
 
@@ -105,7 +106,7 @@ const RecommendPresenter = ({id, title, desc, tag, thumbnail, uploadDate}) => {
                 }}
               >
                 <Image  
-                  source={{uri: item.poster}}
+                  source={{uri: item.thumbnail}}
                   style={styles.posterImage}
                 />
                 <Text style={{fontSize: 24}} numberOfLines={1}>
@@ -114,7 +115,7 @@ const RecommendPresenter = ({id, title, desc, tag, thumbnail, uploadDate}) => {
                 <Rating rating={item.rating} />
                 <Genres genres={item.genres} />
                 <Text style={{fontSize: 12}} numberOfLines={3}>
-                  {item.description}
+                  {item.desc}
                 </Text>
                 <ViewDetail onPress={goToDetail} />
               </Animated.View>
