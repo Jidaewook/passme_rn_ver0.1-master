@@ -8,7 +8,7 @@ import HomeScreen from './main/HomeScreen';
 import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
-import SettingScreen from './main/SettingScreen';
+import RecommendScreen from './main/RecommendScreen/RecommendPresenter';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -21,6 +21,18 @@ const MainTabScreen = () => (
         initialRouteName="Home"
         activeColor="#fff"
     >
+        <Tab.Screen
+            name="Recommend"
+            component={RecommendScreen}
+            options={{
+                tabBarLabel: 'Recommend',
+                tabBarColor: '#009387',
+                tabBarIcon: ({color}) => (
+                    <Icon name="ios-compass" color={color} size={26} />
+                )
+            }}
+        />
+
         <Tab.Screen
             name="Home"
             component={HomeStackScreen}
@@ -45,17 +57,7 @@ const MainTabScreen = () => (
             }}
         />
 
-        <Tab.Screen
-            name="Recommend"
-            component={SettingScreen}
-            options={{
-                tabBarLabel: 'Recommend',
-                tabBarColor: '#009387',
-                tabBarIcon: ({color}) => (
-                    <Icon name="ios-compass" color={color} size={26} />
-                )
-            }}
-        />
+       
 
         <Tab.Screen
             name="Search"

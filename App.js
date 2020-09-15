@@ -17,12 +17,12 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* 루트를 풀고, 사이드를 띄우면 포갓 패스워드까지 갈 수 있다. */}
-      <RootStackScreen />
-      {/* <Drawer.Navigator drawerContent={props => <DrawerContents {...props} />}>
+      {/* <RootStackScreen /> */}
+      <Drawer.Navigator drawerContent={props => <DrawerContents {...props} />}>
         
         <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
         
-      </Drawer.Navigator>  */}
+      </Drawer.Navigator> 
       {/* <Stack.Navigator>
           <Stack.Screen
             name="Home"

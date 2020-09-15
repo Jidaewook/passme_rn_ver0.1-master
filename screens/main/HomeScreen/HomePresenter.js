@@ -16,7 +16,7 @@ import Title from '../../components/Title';
 import Vertical from '../../components/Vertical';
 import Icon from '@expo/vector-icons/Ionicons';
 
-import RecommendScreen from '../RecommendScreen';
+import RecommendScreen from '../RecommendScreen/RecommendPresenter';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native";
 
