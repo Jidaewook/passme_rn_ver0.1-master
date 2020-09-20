@@ -12,7 +12,7 @@ import {trimText, formDate} from '../../Utils';
 const Vertical = ({id, thumbnail, title, likes, comments}) => {
     const navigation = useNavigation();
     const goToDetail = () => 
-        navigation.navigate("Detail", {
+        navigation.navigate("DetailScreen", {
             id, 
             thumbnail,
             title,

@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text} from "react-native";
+import {View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity} from "react-native";
 
-const DetailScreen = () => {
+const DetailScreen = ({navigation}) => {
     return (
         <View>
             <Text>
                 DetailScreen
             </Text>
         </View>
+        
     );
 };
 

@@ -36,7 +36,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
 
     const navigation = useNavigation();
     const goToDetail = () => 
-        navigation.navigate("RecommendScreen", {name: title});
+        navigation.navigate("DetailScreen");
 
 
     return (

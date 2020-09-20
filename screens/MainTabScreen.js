@@ -9,12 +9,14 @@ import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
 import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
+import DetailScreen from './main/DetailScreen';
 
 
 const Tab = createMaterialBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
+const RecommendStack = createStackNavigator();
 
 const MainTabScreen = () => (
     <Tab.Navigator
@@ -23,7 +25,7 @@ const MainTabScreen = () => (
     >
         <Tab.Screen
             name="Recommend"
-            component={RecommendScreen}
+            component={RecommendStackSCreen}
             options={{
                 tabBarLabel: 'Recommend',
                 tabBarColor: '#009387',
@@ -116,8 +118,31 @@ const HomeStackScreen = ({navigation}) => (
                     <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
                 )
             }} />
+            <DetailStack.Screen name="DetailScreen" component={DetailScreen} options={{
+                title: 'Detail'
+            }} />
     </HomeStack.Navigator>
     );
+
+const RecommendStackSCreen = ({navigation }) => (
+    <RecommendStack.Navigator>
+        <RecommendStack.Screen name="Recommend" component={RecommendScreen} options={{
+                title:'Recommend',
+                headerLeft: () => (
+                    <Icon.Button name="ios-menu" size={25} onPress={() => navigation.openDrawer()}></Icon.Button>
+                )
+        }} />
+        
+        <DetailStack.Screen name="DetailScreen" component={DetailScreen} options={{
+                title: 'Detail'        
+        }} />
+    </RecommendStack.Navigator>
+
+    
+    
+);
+
+
     
 const DetailsStackScreen = ({navigation}) => (
     <DetailsStack.Navigator screenOptions={{
@@ -129,9 +154,10 @@ const DetailsStackScreen = ({navigation}) => (
             fontWeight: 'bold'
         }
     }}>
-    <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+    <DetailsStack.Screen name="Details" component={DetailScreen} options={{
         headerLeft: () => (
-            <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
+            // <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
+            <Icon.Button name="caret-back-outline" size={25} backgroundColor="#1f65ff" onPress={() => navigation.HomeStackScreen()}></Icon.Button>
         )
     }} />
     </DetailsStack.Navigator>

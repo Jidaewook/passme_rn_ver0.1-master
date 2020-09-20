@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 import SlidePoster from './SlidePoster';
 import { apiImage } from '../../api';
 
+
+
 const {width: WIDTH, height: HEIGHT} = Dimensions.get("screen");
 
 const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
 
     const navigation = useNavigation();
     const goToDetail = () => 
-        navigation.navigate("DetailScreen", {name: title});
+        navigation.navigate("DetailScreen");
 
     return (
         <View style={styles.container}>
