@@ -8,7 +8,7 @@ import HomeScreen from './main/HomeScreen';
 import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
-import RecommendScreen from './main/RecommendScreen/RecommendPresenter';
+import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
 
 
 const Tab = createMaterialBottomTabNavigator();

@@ -10,11 +10,11 @@ const {height, width} = Dimensions.get('window');
 const BACKDROP_HEIGHT = height * 0.65;
 const ITEM_SIZE = Platform.OS = 'ios' ? width * 0.72 : width * 0.74;
 
-const Backdrop = ({movies, scrollX}) => {
+const Backdrop = ({ncs, scrollX}) => {
     return (
         <View style={{ height: BACKDROP_HEIGHT, width, position: 'absolute' }}>
           <FlatList
-            data={movies.reverse()}
+            data={ncs.reverse()}
             keyExtractor={(item) => item.key + '-backdrop'}
             removeClippedSubviews={false}
             contentContainerStyle={{ width, height: BACKDROP_HEIGHT }}
