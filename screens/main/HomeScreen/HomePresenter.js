@@ -83,7 +83,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     style={styles.cardContainer}
                 >
                     <Title title={"기관별 공고"}   />
-                    <TouchableOpacity onPress={goToDetail}>
+                    <TouchableOpacity onPress={"기관별공고전체보기로 다시설정이 필요"}>
                     <Icon 
                         name="ios-add" 
                         color="black" 
