@@ -9,11 +9,13 @@ import { apiImage } from '../../api';
 
 const {width: WIDTH, height: HEIGHT} = Dimensions.get("screen");
 
-const Slide = ({id, title, desc, tag, thumbnail, uploadDate}) => {
+const Slide = ({id, title, desc, tag, likes, thumbnail, uploadDate}) => {
 
     const navigation = useNavigation();
     const goToDetail = () => 
-        navigation.navigate("DetailScreen");
+        navigation.navigate("DetailScreen", {
+            id, title, desc, thumbnail, tag
+        });
 
     return (
         <View style={styles.container}>

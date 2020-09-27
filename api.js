@@ -19,7 +19,7 @@ const getAnything = async (path, params = {}) => {
 export const lectureApi = {
     ncs: () => getAnything("/lecture/ncs"),
     psat: () => getAnything("/lecture/psat"),
-    ncsDetail: id => getAnything(`/lecture/ncs/${id}`),
+    ncsDetail: ncsModelId => getAnything(`/lecture/ncs/${ncsModelId}`),
     psatDetail: id => getAnything(`/lecture/psat/${id}`)
 };
 

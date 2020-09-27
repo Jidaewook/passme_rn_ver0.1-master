@@ -1,17 +1,19 @@
 import React from 'react';
-import styled from "styled-components";
+import {Text, StyleSheet} from 'react-native';
 
-const Container = styled.Text`
-    color: rgb(220, 220, 220);
-    margin-bottom: 7px;
-    margin-left: 15px;
-    font-weight: 500;
-    font-size: 12px;
-`;
-
-const Comments = ({comments}) => 
-    <Container>
+const Comments = ({comments, styleOption}) => 
+    <Text style={[styles.Container, styleOption]}>
         ✍ {comments}
-    </Container>
+    </Text>
 
 export default Comments;
+
+const styles = StyleSheet.create({
+    Container : {
+        color: 'black',
+        marginBottom: 7,
+        marginLeft: 15,
+        fontWeight: '500',
+        fontSize: 20
+    }
+})

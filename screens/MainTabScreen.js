@@ -17,6 +17,7 @@ const Tab = createMaterialBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
 const RecommendStack = createStackNavigator();
+// const SearchStack = createStackNavigator();
 
 const MainTabScreen = () => (
     <Tab.Navigator
@@ -25,7 +26,7 @@ const MainTabScreen = () => (
     >
         <Tab.Screen
             name="Recommend"
-            component={RecommendStackSCreen}
+            component={RecommendStackScreen}
             options={{
                 tabBarLabel: 'Recommend',
                 tabBarColor: '#009387',
@@ -119,12 +120,13 @@ const HomeStackScreen = ({navigation}) => (
                 )
             }} />
             <DetailStack.Screen name="DetailScreen" component={DetailScreen} options={{
+                
                 title: 'Detail'
             }} />
     </HomeStack.Navigator>
     );
 
-const RecommendStackSCreen = ({navigation }) => (
+const RecommendStackScreen = ({navigation }) => (
     <RecommendStack.Navigator>
         <RecommendStack.Screen name="Recommend" component={RecommendScreen} options={{
                 title:'Recommend',
@@ -140,6 +142,18 @@ const RecommendStackSCreen = ({navigation }) => (
 
     
     
+);
+
+const SearchStackScreen = ({navigation}) => (
+    <SearchStack.Navigator>
+        <SearchStack.Screen name="Search" component={SearchScreen} options={{
+                title:'Search',
+                headerLeft: () => (
+                    <Icon.Button name="ios-menu" size={25} onPress={() => navigation.openDrawer()}></Icon.Button>
+                )
+        }} />
+        
+    </SearchStack.Navigator>
 );
 
 

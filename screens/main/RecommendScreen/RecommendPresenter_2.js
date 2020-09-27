@@ -166,7 +166,12 @@ import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, Image, Dimensions, Platform, Animated} from 'react-native';
 import {lectureApi} from '../../../api';
 
+
+import {useNavigation} from "@react-navigation/native";
+
 import Backdrop from '../../components/Recommend/Backdrop';
+import ViewDetail from "../../components/Button/ViewDetail";
+
 
 const {width, height} = Dimensions.get('window');
 const ITEM_SIZE = Platform.OS = 'ios' ? width * 0.72 : width * 0.74;
@@ -174,6 +179,11 @@ const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const SPACING = 10;
 
 const RecommendPresenter_2 = () => {
+  const navigation = useNavigation();
+  const goToDetail = () => 
+      navigation.navigate("DetailScreen", {name: title});
+
+
 
     const [lecture, setLecture] = useState({
       loading: true,
@@ -263,8 +273,8 @@ const RecommendPresenter_2 = () => {
                  <Genres genres={item.genres} />
                  <Text style={{fontSize: 12}} numberOfLines={3}>
                    {item.desc}
-                 </Text>
-                 <ViewDetail onPress={goToDetail} /> */}
+                 </Text> */}
+                 <ViewDetail onPress={goToDetail} />
                 </Animated.View>
                </View>
               )
