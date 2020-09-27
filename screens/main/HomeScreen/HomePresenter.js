@@ -355,4 +355,5 @@ const styles = StyleSheet.create({
         color: '#444',
         marginTop: 10
     },
+    
 });
