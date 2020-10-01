@@ -37,6 +37,8 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
     const navigation = useNavigation();
     const goToDetail = () => 
         navigation.navigate("DetailScreen");
+    const goToDetailBBS = () => 
+        navigation.navigate("DetailBBSSCreen");
 
 
     return (
@@ -88,7 +90,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                         name="ios-add" 
                         color="black" 
                         size={26}
-                        style={{marginLeft: 280}}
+                        style={{marginLeft: 240}}
                     />
                     </TouchableOpacity>
                 </View>

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Button} from "react-native";
 import * as WebBroswer from 'expo-web-browser';
 
+import Title from '../components/Title';
+import Desc from '../components/Desc';
 import ScrollContainer from '../components/ScrollContainer';
 import Poster from '../components/Poster';
 import Likes from '../components/Likes';
@@ -125,104 +127,43 @@ const DetailScreen = ({
                         </View>
                     </View>
                 </View>
-                <>
-                    <Text style={styles.Title}>
-                        카테고리
-                    </Text>
-                    <Text style={styles.Desc}>
-                        의사소통, 자료해석
-                    </Text>
+                    <Title title={"카테고리"} />
+                        
+                    <Desc 
+                        // desc={lecture.ncs.category}
+                        desc={"의사소통, 자료해석"}
+                    >
+                        
+                    </Desc>
 
-                </>
-                <>
-                    <Text style={styles.Title}>
-                        {lecture.ncs.title}
-                    </Text>
-                    <Text style={styles.Desc}>
-                        {lecture.ncs.desc}
-
-                    </Text>
-                </>
+                    <Title title={lecture.ncs.title} />
+                        
+                    <Desc desc={lecture.ncs.desc} />
+                        
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'row'}}>
-                        <Text style={styles.Title}>
-                            댓글
-                        </Text>
+                        <Title title={"댓글"} />
 
                         <Comments styleOption={styles.comments} comments={10} />
 
                     </View>
                     
                     <View style={{flexDirection: 'row', marginLeft: 50}}>
-                        <Text style={styles.Title}>
-                            좋아요
-                        </Text>
+                        <Title title={"좋아요"} />
                         
                         <Likes styleOption={styles.likes} likes={1}  />
 
                     </View>
                 </View>
                 <>
-                    <Text style={styles.Title}>
-                        가서보기
-                    </Text>
+                    <Title title={"가서보기"} />
+                        
                     <TouchableOpacity onPress={() => 
                         openBrowser(lecture.ncs.url)
                     }>
-                        <Text>
-                            영상보기
-                        </Text>
-
+                        <Desc desc={"영상보기"} />
                     </TouchableOpacity>
                 </>
-
-
-                {/* <Text style={{fontSize: 20, backgroundColor: 'white', color: 'black', fontWeight: 'bold'}} >
-                    카테고리
-                    <Text>
-                        {lecture.ncs.category}    
-                    </Text> 
-                </Text>
-           
-                <Text 
-                    style={{
-                        backgroundColor: '#009387', 
-                        color: 'black',
-                        fontWeight: 'bold',
-                        fontSize: 25,
-                        marginTop: 30
-                    }}>
-                    {lecture.ncs.title}
-                </Text>
-                <Text style={styles.Desc}>
-                    {lecture.ncs.desc}
-                </Text>
-                
-                <View style={styles.TagContainer}>
-                    <Text style={[styles.TitleSub, {flexDirection: "row"}]}>
-                        관련과목(태그에 대한 이미지 넣을 공간)
-                        
-                    </Text>
-                    <View style={styles.Image} >
-                            태그에 따른 이미지와 텍스트가 연동되어야 함
-                            <Image source={require("../../assets/favicon.png")} style={styles.image} resizeMode="center"></Image>
-
-                    </View>
-                </View>
-                <View style={{width: "100%", height: 50, backgroundColor: "darkgray"}}>
-                    <Text style={{marginTop: 0, fontSize: 15}}>
-                        등록일-업데이트앳
-                    </Text>
-                </View>
-                <Text style={{marginTop: 30, fontSize: 20, fontWeight: "bold"}}>
-                    댓글
-                </Text>
-                <Text style={{margintop: 20, flexDirection: "column"}}>
-                            댓글 수
-                            코멘트 렝스
-                </Text> */}
-                
-                
             </> 
         </ScrollContainer>  
 
@@ -305,12 +246,14 @@ const styles = StyleSheet.create({
         height: 150
     }, 
     likes: {
-        fontSize: 20
+        fontSize: 15,
+        marginTop: 5,
+        marginLeft: 5
     },
     comments: {
-        fontSize: 20,
-    
-
+        fontSize: 15,
+        marginTop: 5,
+        marginLeft: 5
     }
 
 })

@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     Container : {
         color: 'black',
         marginBottom: 7,
-        marginLeft: 15,
         fontWeight: '500',
         fontSize: 20
     }

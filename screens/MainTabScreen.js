@@ -10,14 +10,15 @@ import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
 import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
 import DetailScreen from './main/DetailScreen';
-
+import DetailBBSScreen from './main/DetailBBS/DetailBBSPresenter';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
 const RecommendStack = createStackNavigator();
-// const SearchStack = createStackNavigator();
+const SearchStack = createStackNavigator();
+const DetailBBSStack = createStackNavigator();
 
 const MainTabScreen = () => (
     <Tab.Navigator
@@ -123,6 +124,10 @@ const HomeStackScreen = ({navigation}) => (
                 
                 title: 'Detail'
             }} />
+            {/* {/* 이걸 띄우면 에러가 남 */}
+                {/* <DetailBBSStack.Screen name="DetailBBSScreen" component={DetailBBSStack} options={{
+                title: 'DetailBBS'
+            }} />  */}
     </HomeStack.Navigator>
     );
 
