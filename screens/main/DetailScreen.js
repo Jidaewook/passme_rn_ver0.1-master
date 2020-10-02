@@ -94,7 +94,7 @@ const DetailScreen = ({
                 ncs,
                 ncsError
             });
-            console.log("DetailTest", ncs.likes.length)
+            console.log("DetailTest", ncs.comments.text)
 
         }
 
@@ -164,6 +164,15 @@ const DetailScreen = ({
                         <Desc desc={"영상보기"} />
                     </TouchableOpacity>
                 </>
+                {lecture.ncs.comments && (
+                    <View>
+                        {lecture.ncs.comments.map(item => {
+                            <Text>
+                                {item.text}
+                            </Text>
+                        })}
+                    </View>
+                )}
             </> 
         </ScrollContainer>  
 

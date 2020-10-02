@@ -8,7 +8,7 @@ import SigninScreen from './auth/SigninScreen';
 import ForgotpasswordScreen from './auth/ForgotpasswordScreen';
 import DetailScreen from './main/DetailScreen';
 import Home from "./main/HomeScreen";
-import Search from './main/SearchScreen';
+import SearchScreen from './main/SearchScreen';
 import DetailBBSScreen from './main/DetailBBS/DetailBBSScreen';
 
 const RootStack = createStackNavigator();
@@ -25,7 +25,7 @@ const RootStackScreen = ({navigation}) => (
         {/* Main */}
         <RootStack.Screen name="HomeScreen" component={Home}   />
         <RootStack.Screen name="DetailScreen" component={DetailScreen} />
-        <RootStack.Screen name="SearchScreen" component={Search} />
+        <RootStack.Screen name="SearchScreen" component={SearchScreen} />
         <RootStack.Screen name="DetailBBSScreen" component={DetailBBSScreen} />
     </RootStack.Navigator>
 

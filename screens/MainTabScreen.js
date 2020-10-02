@@ -65,7 +65,7 @@ const MainTabScreen = () => (
 
         <Tab.Screen
             name="Search"
-            component={SearchScreen}
+            component={SearchStackScreen}
             options={{
                 tabBarLabel: 'Search',
                 tabBarColor: '#009387',
@@ -127,6 +127,9 @@ const HomeStackScreen = ({navigation}) => (
             <DetailBBSStack.Screen name="DetailBBSScreen" component={DetailBBSScreen} options={{
                 title: 'DetailBBS'
             }} /> 
+            <SearchStack.Screen name="SearchScreen" component={SearchScreen} options={{
+                title: 'Search'
+            }} /> 
     </HomeStack.Navigator>
     );
 
@@ -143,19 +146,24 @@ const RecommendStackScreen = ({navigation }) => (
                 title: 'Detail'        
         }} />
     </RecommendStack.Navigator>
-
-    
-    
 );
 
 const SearchStackScreen = ({navigation}) => (
-    <SearchStack.Navigator>
-        <SearchStack.Screen name="Search" component={SearchScreen} options={{
+    <SearchStack.Navigator screenOptions={{
+        headerStyle: {
+            backgroundColor: '#009387',
+        },
+        headerTintColor: '#fff',
+            headerTitleStyle: {
+        fontWeight: 'bold'
+        }
+    }}>
+        <SearchStack.Screen name="SearchScreen" component={SearchScreen} options={{
                 title:'Search',
                 headerLeft: () => (
-                    <Icon.Button name="ios-menu" size={25} onPress={() => navigation.openDrawer()}></Icon.Button>
+                    <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
                 )
-        }} />
+            }} />
         
     </SearchStack.Navigator>
 );
