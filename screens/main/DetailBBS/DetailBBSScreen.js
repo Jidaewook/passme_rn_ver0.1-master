@@ -6,7 +6,7 @@ const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
 
 
-const DetailBBSPresenter = ({loading, notice, incruit, qna}) => {
+const DetailBBSScreen = ({loading, notice, incruit, qna}) => {
     // notice : 공지사항
     // incruit : 채용공고
     // qna : 이용자 qna
@@ -39,7 +39,7 @@ const DetailBBSPresenter = ({loading, notice, incruit, qna}) => {
     );
 };
 
-export default DetailBBSPresenter;
+export default DetailBBSScreen;
 
 const styles = StyleSheet.create({
     Container : {

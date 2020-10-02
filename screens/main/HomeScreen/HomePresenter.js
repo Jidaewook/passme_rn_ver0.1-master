@@ -24,11 +24,16 @@ import {useNavigation} from "@react-navigation/native";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
+const ContainerTitle = styled.View`
+    /* justify-content: flex-end; */
+    flex-direction: row;
+    width: 100%;
+`;
+
 const Container = styled.View`
     flex: 1;
     justify-content: center;
     padding-left: 10px;
-    
 `;
 
 
@@ -38,7 +43,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
     const goToDetail = () => 
         navigation.navigate("DetailScreen");
     const goToDetailBBS = () => 
-        navigation.navigate("DetailBBSSCreen");
+        navigation.navigate("DetailBBSScreen");
 
 
     return (
@@ -80,20 +85,24 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     
                 </ScrollView>
             )}
-            <Container>
+            <ContainerTitle>
                 <View
                     style={styles.cardContainer}
                 >
                     <Title title={"기관별 공고"}   />
-                    <TouchableOpacity onPress={"기관별공고전체보기로 다시설정이 필요"}>
-                    <Icon 
-                        name="ios-add" 
-                        color="black" 
-                        size={26}
-                        style={{marginLeft: 240}}
-                    />
+                </View>
+                <View style={{width: '75%', flex: 1}} >
+                    <TouchableOpacity onPress={goToDetailBBS}>
+                        <Icon 
+                            name="ios-add" 
+                            color="black" 
+                            size={26}
+                            style={{alignSelf: 'flex-end', marginRight: 10}}
+                        />
                     </TouchableOpacity>
                 </View>
+                </ContainerTitle>
+                <Container>
                 <ScrollView
                     style={{marginTop: 20, width: '100%', height: '80%'}}
                     // contentContainerStyle={{paddingLeft: 0}}
@@ -240,7 +249,7 @@ export default HomePresenter;
 
 const styles = StyleSheet.create({
     cardContainer: {
-        flexDirection: "row"
+        justifyContent: 'flex-start'
     },
     sliderContainer: {
         width: '100%',

@@ -102,11 +102,14 @@ const styles = StyleSheet.create({
         fontWeight: "500"
     },
     button : {
-        marginTop: 70,
-        marginLeft: 15,
-        width: 150,
-        height: 30,
+        // marginBottom: 5,
+        // marginLeft: 15,
+        // width: '100%',
+        width: WIDTH / 3,
+        height: HEIGHT / 20,
         alignItems: "center",
+        marginTop: '40%',
+        marginLeft: '30%',
         justifyContent: "center",
         backgroundColor: '#e74c3c',
         borderRadius: 10

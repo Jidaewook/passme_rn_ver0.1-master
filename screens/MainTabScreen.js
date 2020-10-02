@@ -10,7 +10,7 @@ import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
 import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
 import DetailScreen from './main/DetailScreen';
-import DetailBBSScreen from './main/DetailBBS/DetailBBSPresenter';
+import DetailBBSScreen from './main/DetailBBS/DetailBBSScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -124,10 +124,9 @@ const HomeStackScreen = ({navigation}) => (
                 
                 title: 'Detail'
             }} />
-            {/* {/* 이걸 띄우면 에러가 남 */}
-                {/* <DetailBBSStack.Screen name="DetailBBSScreen" component={DetailBBSStack} options={{
+            <DetailBBSStack.Screen name="DetailBBSScreen" component={DetailBBSScreen} options={{
                 title: 'DetailBBS'
-            }} />  */}
+            }} /> 
     </HomeStack.Navigator>
     );
 
