@@ -1,14 +1,5 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-// import styled from "styled-components";
-
-// const Container = styled.Text`
-//     color: black;
-//     margin-bottom: 7px;
-//     font-weight: 500;
-//     font-size: 16px;
-
-// `;
 
 const Likes = ({likes, styleOption}) => 
     <Text style={[styles.Container, styleOption]}>

@@ -4,6 +4,7 @@ import * as WebBroswer from 'expo-web-browser';
 
 import Title from '../components/Title';
 import Desc from '../components/Desc';
+import DescContent from '../components/DescContent';
 import ScrollContainer from '../components/ScrollContainer';
 import Poster from '../components/Poster';
 import Likes from '../components/Likes';
@@ -11,62 +12,6 @@ import Comments from '../components/Comments';
 import ViewDetail from '../components/Button/ViewDetail';
 
 import {lectureApi} from '../../api';
-
-
-// const BG = styled.Image`
-//     width: 100%;
-//     height: 100%;
-//     opacity: 0.4;
-//     position: absolute;
-// `;
-
-// const Header = styled.View`
-//     height: ${Dimensions.get("window").height / 3}px;
-//     align-items: center;
-//     justify-content: flex-end;
-// `;
-
-// const Container = styled.View`
-//     flex-direction: row;
-//     align-items: center;
-//     top: 30px;
-// `;
-
-// const Info = styled.View`
-//     width: 50%;
-//     margin-left: 40px;
-// `;
-
-// const Title = styled.Text`
-//     color: black;
-//     font-weight: bold;
-//     font-size: 25;
-//     margin-top: 30px;
-//     background-color: white;
-// `;
-
-// const TitleSub = styled.Text`
-//     color: black;
-//     font-weight: bold;
-//     font-size: 18;
-//     margin-top: 30px;
-//     background-color: white;
-// `;
-
-
-// const Desc = styled.Text`
-//     color: black;
-//     font-weight: 300;
-//     font-size: 18;
-//     margin-Left: 5;
-// `;
-
-// const Tag = styled.Text`
-//     width: 10%;
-//     height: 10%;
-//     color: black;
-//     flex-direction: row;
-// `;
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -88,14 +33,13 @@ const DetailScreen = ({
         const getData = async () => {
             const [ncs, ncsError] = await lectureApi.ncsDetail(id);
 
-            // console.log("ncs", ncs);
             setLecture({
                 loading: false,
                 ncs,
                 ncsError
             });
-            console.log("DetailTest", ncs.comments.text)
-
+            console.log("DetailTest", lecture.ncs.comments.length)
+            
         }
 
     // useEffect
@@ -138,23 +82,7 @@ const DetailScreen = ({
 
                     <Title title={lecture.ncs.title} />
                         
-                    <Desc desc={lecture.ncs.desc} />
-                        
-                <View style={{flexDirection: 'row'}}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title title={"댓글"} />
-
-                        <Comments styleOption={styles.comments} comments={10} />
-
-                    </View>
-                    
-                    <View style={{flexDirection: 'row', marginLeft: 50}}>
-                        <Title title={"좋아요"} />
-                        
-                        <Likes styleOption={styles.likes} likes={1}  />
-
-                    </View>
-                </View>
+                    <DescContent desc={lecture.ncs.desc} />
                 <>
                     <Title title={"가서보기"} />
                         
@@ -163,7 +91,34 @@ const DetailScreen = ({
                     }>
                         <Desc desc={"영상보기"} />
                     </TouchableOpacity>
-                </>
+                </>       
+                <View style={{flexDirection: 'row', marginTop: 10 }}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Title title={"댓글"} />
+
+                        <Comments styleOption={styles.comments} comments={lecture.ncs.comments.length} />
+
+                    </View>
+                    
+                    <View style={{flexDirection: 'row', marginLeft: 50}}>
+                        <Title title={"좋아요"} />
+                        
+                        <Likes styleOption={styles.likes} likes={lecture.ncs.likes.length}  />
+
+                    </View>
+                </View>
+                <>
+                    <View style={{marginTop: 10}}>
+                        <Title title={"댓글모음"} />
+                            
+                            <Desc  />
+                        <TouchableOpacity onPress={() => 
+                            openBrowser(lecture.ncs.url)
+                        }>
+                            <Desc desc={"영상보기"} />
+                        </TouchableOpacity>
+                    </View>
+                </> 
                 {lecture.ncs.comments && (
                     <View>
                         {lecture.ncs.comments.map(item => {
