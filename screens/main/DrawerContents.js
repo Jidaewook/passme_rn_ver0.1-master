@@ -1,8 +1,14 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {DrawerContentScrollView, DrawerItem, createDrawerNavigator} from '@react-navigation/drawer';
 import {Text, Title, Avatar, Caption, Paragraph, Drawer, TouchableRipple, Switch} from 'react-native-paper';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
+
+import NoticeScreen from './ContentBBS/Notice';
+
+const Stack = createStackNavigator();
 
 const DrawerContents = (props) => {
 
@@ -11,6 +17,8 @@ const DrawerContents = (props) => {
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme);
     }
+
+    const [active, setActive] = React.useState('');
 
     return (
         <View style={{flex: 1}}>    
@@ -49,7 +57,7 @@ const DrawerContents = (props) => {
                     
                     {/* Drawer Menu */}
                     <Drawer.Section style={styles.drawerSection}>
-                            <DrawerItem 
+                            <Drawer.Item
                                 icon={({color, size}) => (
                                     <Icon 
                                         name="bullhorn-outline"
@@ -58,10 +66,11 @@ const DrawerContents = (props) => {
                                     />
                                 )}
                                 label="Notice"
+                                active={active === 'first'}
                                 onPress={() => {props.navigation.navigate('NoticeScreen')}}
                             />
                         
-                            <DrawerItem 
+                            <Drawer.Item 
                                 icon={({color, size}) => (
                                     <Icon 
                                         name="movie-open-outline"
@@ -70,6 +79,7 @@ const DrawerContents = (props) => {
                                     />
                                 )}
                                 label="NCS Lecture"
+                                active={active === 'second'}
                                 onPress={() => {props.navigation.navigate('LectureScreen')}}
                             />
                             
@@ -103,7 +113,36 @@ const DrawerContents = (props) => {
     );
 };
 
+// // Stack
+
+// function noticeScreenStack({ navigation }) {
+//     return (
+//         <Stack.Navigator initialRouteName="Notice">
+//           <Stack.Screen
+//             name="Notice"
+//             component={NoticeScreen}
+//             options={{
+//               title: 'Notice', //Set Header Title
+//               headerLeft: ()=>
+//                 <NavigationDrawerStructure
+//                   navigationProps={navigation}
+//                 />,
+//               headerStyle: {
+//                 backgroundColor: '#f4511e', //Set Header color
+//               },
+//               headerTintColor: '#fff', //Set Header text color
+//               headerTitleStyle: {
+//                 fontWeight: 'bold', //Set Header text style
+//               },
+//             }}
+//           />
+//         </Stack.Navigator>
+//     );
+//   }
+
+
 export default DrawerContents;
+
 
 const styles = StyleSheet.create({
     drawerContent: {

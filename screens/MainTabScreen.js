@@ -8,9 +8,12 @@ import HomeScreen from './main/HomeScreen';
 import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
-import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
+import RecommendScreen from './main/RecommendScreen/RecommendPresenter';
 import DetailScreen from './main/DetailScreen';
-import DetailBBSScreen from './main/DetailBBS/DetailBBSScreen';
+import Incruit from './main/DetailBBS/Incruit';
+import Mathqna from './main/DetailBBS/Mathqna';
+import Solving from './main/DetailBBS/Solving';
+import Highscore from './main/DetailBBS/Highscore';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -18,7 +21,10 @@ const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
 const RecommendStack = createStackNavigator();
 const SearchStack = createStackNavigator();
-const DetailBBSStack = createStackNavigator();
+const IncruitStack = createStackNavigator();
+const MathqnaStack = createStackNavigator();
+const SolvingStack = createStackNavigator();
+const HighscoreStack = createStackNavigator();
 
 const MainTabScreen = () => (
     <Tab.Navigator
@@ -86,19 +92,6 @@ const MainTabScreen = () => (
                 )
             }}
         />
-
-        {/* <Tab.Screen
-            name="Detail"
-            component={DetailsStackScreen}
-            options={{
-                tabBarLabel: 'Detail',
-                tabBarColor: '#009387',
-                tabBarIcon: ({color}) => (
-                    <Icon name="ios-person" color={color} size={26} />
-                )
-            }}
-        /> */}
-
     </Tab.Navigator>
 );
 
@@ -113,7 +106,7 @@ const HomeStackScreen = ({navigation}) => (
                 headerTitleStyle: {
             fontWeight: 'bold'
             }
-        }}>
+    }}>
             <HomeStack.Screen name="Home" component={HomeScreen} options={{
                 title:'Overview',
                 headerLeft: () => (
@@ -124,12 +117,21 @@ const HomeStackScreen = ({navigation}) => (
                 
                 title: 'Detail'
             }} />
-            <DetailBBSStack.Screen name="DetailBBSScreen" component={DetailBBSScreen} options={{
-                title: 'DetailBBS'
+            <IncruitStack.Screen name="Incruit" component={Incruit} options={{
+                title: 'Incruit'
             }} /> 
             <SearchStack.Screen name="SearchScreen" component={SearchScreen} options={{
                 title: 'Search'
             }} /> 
+            <MathqnaStack.Screen name="Mathqna" component={Mathqna} options={{
+                title: 'Math Q&A'
+            }} /> 
+            <SolvingStack.Screen name="Solving" component={Solving} options={{
+                title: 'Solving'
+            }} />
+            <HighscoreStack.Screen name="Highscore" component={Highscore} options={{
+                title: 'Highscore'
+            }} />
     </HomeStack.Navigator>
     );
 

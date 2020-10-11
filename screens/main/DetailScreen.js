@@ -71,6 +71,7 @@ const DetailScreen = ({
                         </View>
                     </View>
                 </View>
+                <View style={{borderBottomWidth: 1, borderColor: 'gray', paddingBottom: 5}}>
                     <Title title={"카테고리"} />
                         
                     <Desc 
@@ -79,55 +80,69 @@ const DetailScreen = ({
                     >
                         
                     </Desc>
-
+                </View>
+                <View style={{borderBottomWidth: 1, borderColor: 'gray', paddingBottom: 5}}>
                     <Title title={lecture.ncs.title} />
                         
                     <DescContent desc={lecture.ncs.desc} />
-                <>
-                    <Title title={"가서보기"} />
-                        
-                    <TouchableOpacity onPress={() => 
-                        openBrowser(lecture.ncs.url)
-                    }>
-                        <Desc desc={"영상보기"} />
-                    </TouchableOpacity>
-                </>       
-                <View style={{flexDirection: 'row', marginTop: 10 }}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title title={"댓글"} />
-
-                        <Comments styleOption={styles.comments} comments={lecture.ncs.comments.length} />
-
-                    </View>
-                    
-                    <View style={{flexDirection: 'row', marginLeft: 50}}>
-                        <Title title={"좋아요"} />
-                        
-                        <Likes styleOption={styles.likes} likes={lecture.ncs.likes.length}  />
-
-                    </View>
                 </View>
                 <>
-                    <View style={{marginTop: 10}}>
-                        <Title title={"댓글모음"} />
+                    <View style={{borderBottomWidth: 1, borderColor: 'gray', paddingBottom: 5}}>
+                        <Title title={"가서보기"} />
                             
-                            <Desc  />
                         <TouchableOpacity onPress={() => 
                             openBrowser(lecture.ncs.url)
                         }>
                             <Desc desc={"영상보기"} />
                         </TouchableOpacity>
+                    </View> 
+
+                </>       
+                <View style={{borderBottomWidth: 1, borderColor: 'gray', paddingBottom: 5}}>
+                    <View style={{flexDirection: 'row', marginTop: 10 }}>
+                        <View style={{flexDirection: 'row'}}>
+                            <Title title={"댓글"} />
+                            <Comments styleOption={styles.comments} comments={10} />
+
+                            {/* <Comments styleOption={styles.comments} comments={lecture.ncs.comments.length} /> */}
+
+                        </View>
+                        
+                        <View style={{flexDirection: 'row', marginLeft: 50}}>
+                            <Title title={"좋아요"} />
+                            <Likes styleOption={styles.likes} likes={10}  />
+
+                            {/* <Likes styleOption={styles.likes} likes={lecture.ncs.likes.length}  /> */}
+
+                        </View>
+                    </View>
+                </View>
+                <>
+                    <View style={{borderBottomWidth: 1, borderColor: 'gray', paddingBottom: 5}}>
+                        <View style={{marginTop: 10}}>
+                            <Title title={"댓글모음"} />
+                                
+                            <Desc  />
+                        
+                            <Desc desc={"영상보기"} />
+                            {lecture.ncs.comments && (
+                                <View>
+                                    {lecture.ncs.comments.map(item => {
+                                        <Text>
+                                            {item.text}
+                                        </Text>
+                                    })}
+                                </View>
+                            )}
+                        </View>
+                        {/* 더보기 클릭해야 하는 영역 */}
+                        <TouchableOpacity onPress={() => 
+                                openBrowser(lecture.ncs.url)
+                        }>
+                        </TouchableOpacity>
                     </View>
                 </> 
-                {lecture.ncs.comments && (
-                    <View>
-                        {lecture.ncs.comments.map(item => {
-                            <Text>
-                                {item.text}
-                            </Text>
-                        })}
-                    </View>
-                )}
+                
             </> 
         </ScrollContainer>  
 

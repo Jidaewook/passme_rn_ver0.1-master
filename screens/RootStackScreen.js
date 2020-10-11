@@ -9,7 +9,11 @@ import ForgotpasswordScreen from './auth/ForgotpasswordScreen';
 import DetailScreen from './main/DetailScreen';
 import Home from "./main/HomeScreen";
 import SearchScreen from './main/SearchScreen';
-import DetailBBSScreen from './main/DetailBBS/DetailBBSScreen';
+import Incruit from './main/DetailBBS/Incruit';
+import Mathqna from './main/DetailBBS/Mathqna';
+import Solving from './main/DetailBBS/Solving';
+import Highscore from './main/DetailBBS/Highscore';
+import NoticeScreen from './main/ContentBBS/Notice';
 
 const RootStack = createStackNavigator();
 
@@ -26,11 +30,15 @@ const RootStackScreen = ({navigation}) => (
         <RootStack.Screen name="HomeScreen" component={Home}   />
         <RootStack.Screen name="DetailScreen" component={DetailScreen} />
         <RootStack.Screen name="SearchScreen" component={SearchScreen} />
-        <RootStack.Screen name="DetailBBSScreen" component={DetailBBSScreen} />
+        <RootStack.Screen name="Incruit" component={Incruit} />
+        <RootStack.Screen name="Mathqna" component={Mathqna} />
+        <RootStack.Screen name="Solving" component={Solving} />
+        <RootStack.Screen name="Highscore" component={Highscore} />
+
+        {/* Drawer */}
+        <RootStack.Screen name="NoticeScreen" component={NoticeScreen} />
+
     </RootStack.Navigator>
-
-    
-
 );
 
 export default RootStackScreen;

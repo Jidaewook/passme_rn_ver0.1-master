@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    View, Text, StyleSheet, Dimensions, FlatList, Animated, Image, Platform
+    View, Text, StyleSheet, Dimensions, FlatList, Animated, Image, Platform, ScrollView
 } from 'react-native';
 
 import {LinearGradient} from 'expo-linear-gradient';
@@ -12,7 +12,10 @@ const ITEM_SIZE = Platform.OS = 'ios' ? width * 0.72 : width * 0.74;
 
 const Backdrop = ({ncs, scrollX}) => {
     return (
-        <View style={{ height: BACKDROP_HEIGHT, width, position: 'absolute' }}>
+        <View 
+          style={{ height: BACKDROP_HEIGHT, width, position: 'absolute' }}
+          
+        >
           <FlatList
             data={ncs.reverse()}
             keyExtractor={(item) => item.key + '-backdrop'}

@@ -171,6 +171,10 @@ import {useNavigation} from "@react-navigation/native";
 
 import Backdrop from '../../components/Recommend/Backdrop';
 import ViewDetail from "../../components/Button/ViewDetail";
+import Genres from '../../components/Recommend/Genres';
+import Rating from '../../components/Recommend/Rating';
+import ViewDetail from "../../components/Button/ViewDetail";
+
 
 
 const {width, height} = Dimensions.get('window');
@@ -178,7 +182,7 @@ const ITEM_SIZE = Platform.OS = 'ios' ? width * 0.72 : width * 0.74;
 const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const SPACING = 10;
 
-const RecommendPresenter_2 = () => {
+const RecommendPresenter_2 = ({id, title, desc, tag, thumbnail, uploadDate}) => {
   const navigation = useNavigation();
   const goToDetail = () => 
       navigation.navigate("DetailScreen", {name: title});
