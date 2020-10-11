@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 import NoticeScreen from './ContentBBS/Notice';
+import Setting from './ContentBBS/Setting';
 
 const Stack = createStackNavigator();
 
@@ -93,6 +94,18 @@ const DrawerContents = (props) => {
                                 )}
                                 label="BBS"
                                 onPress={() => {props.navigation.navigate('bbsScreen')}}
+                            />
+
+                            <DrawerItem 
+                                icon={({color, size}) => (
+                                    <Icon 
+                                        name="cog-outline"
+                                        color={color}
+                                        size={size}
+                                    />
+                                )}
+                                label="Setting"
+                                onPress={() => {props.navigation.navigate('Setting')}}
                             />
                             
                         </Drawer.Section>

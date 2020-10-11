@@ -9,6 +9,8 @@ import MypageScreen from './main/MypageScreen';
 import PostScreen from './main/PostScreen';
 import SearchScreen from './main/SearchScreen';
 import RecommendScreen from './main/RecommendScreen/RecommendPresenter_2';
+
+import Setting from './main/ContentBBS/Setting';
 import DetailScreen from './main/DetailScreen';
 import Incruit from './main/DetailBBS/Incruit';
 import Mathqna from './main/DetailBBS/Mathqna';
@@ -21,6 +23,7 @@ const HomeStack = createStackNavigator();
 const DetailStack = createStackNavigator();
 const RecommendStack = createStackNavigator();
 const SearchStack = createStackNavigator();
+const MypageStack = createStackNavigator();
 const IncruitStack = createStackNavigator();
 const MathqnaStack = createStackNavigator();
 const SolvingStack = createStackNavigator();
@@ -83,7 +86,7 @@ const MainTabScreen = () => (
         
         <Tab.Screen
             name="Mypage"
-            component={MypageScreen}
+            component={MypageStackScreen}
             options={{
                 tabBarLabel: 'MyPage',
                 tabBarColor: '#009387',
@@ -170,7 +173,29 @@ const SearchStackScreen = ({navigation}) => (
     </SearchStack.Navigator>
 );
 
-
+const MypageStackScreen = ({navigation}) => (
+    <MypageStack.Navigator screenOptions={{
+        headerStyle: {
+            backgroundColor: '#009387',
+        },
+        headerTintColor: '#fff',
+            headerTitleStyle: {
+        fontWeight: 'bold'
+        }
+    }}>
+        <MypageStack.Screen name="SettingScreen" component={MypageScreen} options={{
+                title:'MyPage',
+                headerLeft: () => (
+                    <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}>
+                   
+                    </Icon.Button>
+                )
+                
+                
+                
+        }} />
+    </MypageStack.Navigator>
+);
     
 const DetailsStackScreen = ({navigation}) => (
     <DetailsStack.Navigator screenOptions={{

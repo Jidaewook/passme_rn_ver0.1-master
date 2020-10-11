@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import About from '../components/About';
+import { useNavigation } from '@react-navigation/native';
 
 
 const MypageScreen = () => {
@@ -38,6 +39,10 @@ const MypageScreen = () => {
             console.log(E);
         }
     };
+
+    const navigation = useNavigation();
+    const goToSetting = () => 
+        navigation.navigate("Setting");
     
     useEffect(() => {
         getPermissionAsync();
@@ -46,10 +51,6 @@ const MypageScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.titleBar}>
-                    <Ionicons name="ios-arrow-back" size={24} color="#52575D" />
-                    <Ionicons name="md-more" size={24} color="#52575D" />
-                </View>
 
                 <View style={{ alignSelf: "center" }}>
                     <View style={styles.profileImage}>
