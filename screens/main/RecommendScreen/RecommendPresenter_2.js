@@ -173,7 +173,6 @@ import Backdrop from '../../components/Recommend/Backdrop';
 import ViewDetail from "../../components/Button/ViewDetail";
 import Genres from '../../components/Recommend/Genres';
 import Rating from '../../components/Recommend/Rating';
-import ViewDetail from "../../components/Button/ViewDetail";
 
 
 
