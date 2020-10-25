@@ -16,8 +16,8 @@ const Vertical = ({id, thumbnail, title, likes, comments}) => {
             id, 
             thumbnail,
             title,
-            likes,
-            comments
+            // likes,
+            // comments
         });
     
 
@@ -27,8 +27,8 @@ const Vertical = ({id, thumbnail, title, likes, comments}) => {
                 <Poster url={apiImage(thumbnail)} />
                 <Text style={styles.Title}>{trimText(title, 12)}</Text>
                 <View style={styles.Data}>
-                    <Likes likes={likes.length} />
-                    <Comments commetns={comments.length} />
+                    {/* <Likes likes={likes.length} />
+                    <Comments commetns={comments.length} /> */}
                 </View>
 
             </View>

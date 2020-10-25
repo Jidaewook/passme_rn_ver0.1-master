@@ -68,7 +68,7 @@ const DrawerContents = (props) => {
                                 )}
                                 label="Notice"
                                 active={active === 'first'}
-                                onPress={() => {props.navigation.navigate('NoticeScreen')}}
+                                onPress={() => {props.navigation.navigate('Notice')}}
                             />
                         
                             <Drawer.Item 

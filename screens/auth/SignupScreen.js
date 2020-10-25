@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
-import {View, Text,TouchableOpacity, Dimaensions, StyleSheet, StatusBar, TextInput, ActivityIndicator, Alert} from 'react-native';
+import {View, Text,TouchableOpacity, Dimaensions, StyleSheet, StatusBar, TextInput, ActivityIndicator} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Feather, FontAwesome} from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const SignupScreen = ({navigation}) => {
 
@@ -20,6 +21,8 @@ const SignupScreen = ({navigation}) => {
     const [password, setPassword] = useState('')
     const [confirmpw, setConfirmpw] = useState('')
     const [loading, setLoading] = useState(false)
+    const [alert, setAlert] = useState(false)
+
 
 
     // 이 함수 세트는 텍스트 인풋에 값이 들어가도록 하는 함수
@@ -65,24 +68,29 @@ const SignupScreen = ({navigation}) => {
 
     const signUpSubmit = async () => {
         const newData = {
-            name: username,
+            username: username,
             email: email,
             password: password
 
         }
-        console.log(newData)
         setLoading(true);
-        // alert('Email');
+        alert('Email');
         try {
             axios
-            .post("http://localhost:5000/users/register", newData)
+            .post("http://localhost:1337/auth/local/register", newData)
             .then(data => {
-                alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.")
-                // console.log("msg", data.status);
+                // alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.")
+                console.log("msg::::::::::::::::::::::", data);
+                // navigation.navigate('SigninScreen')
+                // if(status===200){
+                    // Alert.alert("Confirm Email please    " + email, "확인을 클릭하면 로그인 화면으로 이동합니다.")
+                // }
+                showAlert()
+
  
             })
             .catch(err => {
-                alert(err.response.data.error)
+                alert(err)
                 // console.log("err", err.response.data.error);
             })
         } catch(e) {
@@ -93,12 +101,13 @@ const SignupScreen = ({navigation}) => {
         }
     }
 
+
     // const check_TextInputChange = () => {
 
     // }
 
     return (
-
+    
 
         loading ? <View><ActivityIndicator size='large' color='green' /> </View> : (
             <View style={styles.container}>
@@ -106,6 +115,7 @@ const SignupScreen = ({navigation}) => {
                         <View style={styles.header}>
                             <Text style={styles.text_header}>Register Now!</Text>
                         </View>
+                        
                         <Animatable.View
                             animation="fadeInUpBig"
                             style={styles.footer}

@@ -19,6 +19,7 @@ import Icon from '@expo/vector-icons/Ionicons';
 import RecommendScreen from '../RecommendScreen/RecommendPresenter';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native";
+import { apiImage } from '../../../api';
 
 
 
@@ -50,8 +51,6 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
         navigation.navigate("Mathqna");
     const goToSolving = () => 
         navigation.navigate("Solving")
-
-
     return (
         <ScrollView
             style={{
@@ -66,7 +65,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                 <ActivityIndicator color="black" size="large"  />
             ) : (
                 <ScrollView style={styles.container}>
-                    <View style={styles.sliderContainer}>
+                     <View style={styles.sliderContainer}>
                         <Swiper
                             loop
                             timeout={3}
@@ -75,14 +74,12 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                         >
                             {ncs.map(item => (
                                 <View style={styles.container}>
-                                    <Slide 
-                                        key={item._id}
+                                    <Slide
                                         id={item._id}
                                         title={item.title}
                                         desc={item.desc}
-                                        thumbnail={item.thumbnail}
-                                        uploadDate={item.updatedAt}
-
+                                        thumbnail={item.thumbnail.url}
+                                        uploadDate={item.uploadDate}
                                     />
                                 </View>
                             ))}
@@ -115,14 +112,13 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 >
-                    
-                    {ncs.map(item => (
+                
+                     {ncs.map(item => (
                         <Vertical 
                             key={item._id}
-                            thumbnail={item.thumbnail}
+                            thumbnail={item.thumbnail.url}
                             title={item.title}
-                            likes={item.likes}
-                            comments={item.comments}
+                            
                         
                         />
                         
@@ -161,7 +157,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     {ncs.map(item => (
                         <Vertical 
                             key={item._id}
-                            thumbnail={item.thumbnail}
+                            thumbnail={item.thumbnail.url}
                             title={item.title}
                             likes={item.likes}
                             comments={item.comments}
@@ -196,7 +192,7 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     {ncs.map(item => (
                         <Vertical 
                             key={item._id}
-                            thumbnail={item.thumbnail}
+                            thumbnail={item.thumbnail.url}
                             title={item.title}
                             likes={item.likes}
                             comments={item.comments}
@@ -205,51 +201,8 @@ const HomePresenter = ({ loading, ncs, psat, notice, bbs}) => {
                     ))}
                 </ScrollView>
             </Container>
-
-            <ContainerTitle>
-                <View
-                    style={styles.cardContainer}
-                >
-                    <Title title={"문제적 문제해결"}   />
-                </View>
-                <View style={{width: '75%', flex: 1}} >
-                    <TouchableOpacity onPress={goToSolving}>
-                        <Icon 
-                            name="ios-add" 
-                            color="black" 
-                            size={26}
-                            style={{alignSelf: 'flex-end', marginRight: 10, marginTop: 5}}
-                        />
-                    </TouchableOpacity>
-                </View>
-            </ContainerTitle>
-            <Container>
-                <ScrollView
-                    style={{marginTop: 20, width: '100%', height: '80%'}}
-                    // contentContainerStyle={{paddingLeft: 0}}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                >
-                    
-                    {ncs.map(item => (
-                        <Vertical 
-                            key={item._id}
-                            thumbnail={item.thumbnail}
-                            title={item.title}
-                            likes={item.likes}
-                            comments={item.comments}
-                        
-                        />
-                        
-                    ))}
-                    
-
-
-                </ScrollView>
-            </Container>
-            
-            
         </ScrollView>
+        
 
 
         
